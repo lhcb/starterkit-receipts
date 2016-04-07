@@ -1,15 +1,31 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[$fontsize$, a4paper]{article}
+\documentclass[11pt, a4paper]{article}
 
 % LAYOUT
 %--------------------------------
 \usepackage{geometry} 
-\geometry{$geometry$}
+\geometry{a4paper, left=45mm, right=45mm, top=15mm, bottom=50mm}
+$if(geometry)$\geometry{$geometry$}$endif$
 
 % No page numbers
 \pagenumbering{gobble}
+
+\usepackage[dvipsnames]{xcolor}
+
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\includegraphics[width=2.5cm]{cern}}
+\chead{\bfseries ORGANISATION EUROPÉENNE POUR LA RECHERCHE\\[1mm] NUCLÉAIRE\\[1mm] EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH}
+\rhead{}
+\cfoot{\scriptsize\color{Gray}Postal address for mail posted in France: CERN \ensuremath{\cdot} Site de Prévessin \ensuremath{\cdot}F-01631 CERN CEDEX}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{3.5cm}
+\fancyhfoffset[l,r]{35mm}
 
 % Left align
 \usepackage[document]{ragged2e}
@@ -27,9 +43,9 @@ $endif$
 \usepackage{xltxtra}
 
 % converts LaTeX specials (quotes, dashes etc.) to Unicode
-\defaultfontfeatures{Mapping=tex-text}
-\setromanfont [Ligatures={Common}, Numbers={OldStyle}]{$seriffont$}
-\setsansfont[Scale=0.9]{$sansfont$}
+\defaultfontfeatures{Mapping=tex-text, Numbers={OldStyle}}
+\setromanfont[Ligatures={Common}, Numbers={OldStyle}]{$seriffont$}
+\setsansfont{$sansfont$}
 
 % Set paragraph break
 \setlength{\parskip}{1em}
@@ -75,56 +91,64 @@ $endif$
 \hypersetup
 {
   pdfauthor=$author$,
-  pdfsubject=Invoice Nr. $invoice-nr$,
-  pdftitle=Invoice Nr. $invoice-nr$,
-  linkcolor=blue,
-  citecolor=blue,
+  linkcolor=black,
+  citecolor=black,
   filecolor=black,
-  urlcolor=blue
+  urlcolor=black
 }
 
-% To display custom date
-% \usepackage[nodayofweek]{datetime}
-% \newdate{date}{01}{12}{1867}
-% \date{\displaydate{date}}
-% Use this instead of \today: % \displaydate{date}
+\usepackage[strict]{changepage}
+
 
 \newcounter{pos}
 % DOCUMENT
 %--------------------------------
 \begin{document}
+\setlength{\parindent}{0pt}
+
 $for(registrants)$
 \normalsize
 \rmfamily
+
+\begin{adjustwidth}{-35mm}{}
+CERN\\
+CH-1211 Genève 23\\
+Geneva (Switzerland)\\
++41~22\,767\,73\,55\\
+\texttt{cindy.denis@cern.ch}\\
+\end{adjustwidth}
+
+
+% END HEADER
+
+\vspace{2em}
+
 \begin{center}
     \small
     $if(logo)$\includegraphics[width=3cm]{$logo$}\\$endif$
     \textsc{\textbf{\MakeLowercase{$author$}}}
 \end{center}
 
-\vspace{5em}
+\vspace{2em}
 
 \normalsize \sffamily
 \textit{$registrants.name$}\\
 $registrants.institute$\\
 \texttt{$registrants.email$}\\
 
-\vspace{6em}
+\vspace{2em}
 
 \begin{flushright}
   \small
   $city$, \today
 \end{flushright}
 
-\vspace{1em}
-
-
 %\section*{\textsc{receipt} \#$receipt-base$-$registrants.id$}
 \section*{\textsc{receipt}}
 \footnotesize
 \setcounter{pos}{0}
 \STautoround*{2} % Get spreadtab to always display the decimal part
-$if(commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
+\STsetdecimalsep{.}
 
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   \hdashline[1pt/1pt]
@@ -137,6 +161,13 @@ $if(commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 \end{spreadtab}
 
 \rmfamily
+
+\vspace{7em}
+\normalsize
+\begin{flushright}
+LHCb Secretariat
+\end{flushright}
+
 $separator$\pagebreak
 $endfor$
 

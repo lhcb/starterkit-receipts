@@ -15,12 +15,8 @@ service:
 
 # Receipt settings
 currency: CHF
-# commasep: true
 lang: english
-
-# Typography and layout
+# Typography
 seriffont: TeX Gyre Pagella
 sansfont: Fira Sans Light
-fontsize: 11pt
-geometry: a4paper, left=43mm, right=43mm, top=41mm, bottom=17mm
 ...
