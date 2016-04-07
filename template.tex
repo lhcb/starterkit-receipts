@@ -89,14 +89,12 @@ $endif$
 % \date{\displaydate{date}}
 % Use this instead of \today: % \displaydate{date}
 
+\newcounter{pos}
 % DOCUMENT
 %--------------------------------
 \begin{document}
-% Preamble
-\newcounter{pos}
-
-% Registrants
 $for(registrants)$
+\normalsize
 \rmfamily
 \begin{center}
     \small
@@ -137,13 +135,6 @@ $if(commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
         & $service.price$\\$endfor$ \noalign{\vskip 2mm} \hline
   @ & @ \multicolumn{1}{r}{Total:}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
 \end{spreadtab}
-
-\vspace{15mm}
-
-\sffamily
-\small
-
-\medskip
 
 \rmfamily
 $separator$\pagebreak
