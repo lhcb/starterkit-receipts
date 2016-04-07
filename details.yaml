@@ -1,0 +1,26 @@
+---
+receipt-base: "2016-ImpactKit"
+author: The LHCb Starterkit team
+logo: starterkit.png
+city: Geneva
+to:
+- Erika Mustermann
+- Musterallee 1
+- 12345 Musterstadt
+- Germany
+service:
+- description: Impact Kit Registration
+  price: 20.00
+  details: Includes organization costs, coffee breaks and social event
+
+# Receipt settings
+currency: CHF
+# commasep: true
+lang: english
+
+# Typography and layout
+seriffont: TeX Gyre Pagella
+sansfont: Fira Sans Light
+fontsize: 11pt
+geometry: a4paper, left=43mm, right=43mm, top=41mm, bottom=17mm
+...
