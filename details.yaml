@@ -1,7 +1,7 @@
 ---
 receipt-base: "2016-ImpactKit"
 author: The LHCb Starterkit team
-logo: starterkit.png
+logo: starterkit
 city: Geneva
 to:
 - Erika Mustermann
