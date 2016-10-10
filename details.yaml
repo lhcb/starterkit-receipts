@@ -17,6 +17,6 @@ service:
 currency: CHF
 lang: english
 # Typography
-seriffont: TeX Gyre Pagella
-sansfont: Fira Sans Light
+seriffont: Optima
+sansfont: Optima
 ...

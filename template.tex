@@ -18,10 +18,24 @@ $if(geometry)$\geometry{$geometry$}$endif$
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
-\lhead{\includegraphics[width=2.5cm]{cern}}
-\chead{\bfseries ORGANISATION EUROPÉENNE POUR LA RECHERCHE\\[1mm] NUCLÉAIRE\\[1mm] EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH}
+\lhead{%
+  \begin{minipage}{3.0cm}
+    \includegraphics[width=2.5cm]{cern}
+  \end{minipage}
+  \begin{minipage}{0.9\textwidth}
+    European Organization for Nuclear Research\\
+    \textit{Organisation européenne pour la recherche nucléaire}
+  \end{minipage}
+}
+\chead{}
 \rhead{}
-\cfoot{\scriptsize\color{Gray}Postal address for mail posted in France: CERN \ensuremath{\cdot} Site de Prévessin \ensuremath{\cdot}F-01631 CERN CEDEX}
+\lfoot{%
+  \href{https://home.cern}{\scriptsize\color{Gray}home.cern}
+}
+\rfoot{%
+  \scriptsize\color{Gray}\textbf{Switzerland}: CH-1211 Geneva CERN
+  \ensuremath{\vert} \textbf{France} F-01631 CERN CEDEX
+}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \setlength{\headheight}{3.5cm}
@@ -107,70 +121,62 @@ $endif$
 \setlength{\parindent}{0pt}
 
 $for(registrants)$
-\normalsize
-\rmfamily
 
-\begin{adjustwidth}{-35mm}{}
-CERN\\
-CH-1211 Genève 23\\
-Geneva (Switzerland)\\
-+41~22\,767\,73\,55\\
-\texttt{cindy.denis@cern.ch}\\
-\end{adjustwidth}
+\begin{minipage}{0.5\textwidth}
+  LHCb secretariat\\
+  Office 2/1-051\\
+  CERN\\
+  +41~22\,767\,73\,55\\
+  \href{mailto:lhcb.secretariat@cern.ch}{lhcb.secretariat@cern.ch}\\
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.5\textwidth}
+  \raggedleft
+  $registrants.name$\\
+  $registrants.institute$\\
+  \href{mailto:$registrants.email$}{$registrants.email$}\\
+\end{minipage}
 
 
 % END HEADER
 
-\vspace{2em}
-
-\begin{center}
-    \small
-    $if(logo)$\includegraphics[width=3cm]{$logo$}\\$endif$
-    \textsc{\textbf{\MakeLowercase{$author$}}}
-\end{center}
-
-\vspace{2em}
-
-\normalsize \sffamily
-\textit{$registrants.name$}\\
-$registrants.institute$\\
-\texttt{$registrants.email$}\\
-
-\vspace{2em}
+% \vspace{2em}
 
 \begin{flushright}
-  \small
-  $city$, \today
+  {\small $city$, \today}
 \end{flushright}
 
-%\section*{\textsc{receipt} \#$receipt-base$-$registrants.id$}
-\section*{\textsc{receipt}}
-\footnotesize
+\vspace{2em}
+
+\section*{\textsc{Receipt of payment}}
+{\footnotesize
 \setcounter{pos}{0}
 \STautoround*{2} % Get spreadtab to always display the decimal part
 \STsetdecimalsep{.}
 
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
-  \hdashline[1pt/1pt]
-  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{Description} & @ \textbf{Prices in $currency$} \\ \hline
+  % \hdashline[1pt/1pt]
+  @ \noalign{\vskip 2mm} \textbf{Num.} & @ \textbf{Description} & @ \textbf{Amount in $currency$} \\ \hline
       $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
         & @ $service.description$ 
         $if(service.details)$\newline {\rmfamily\scriptsize $service.details$} $endif$
         & $service.price$\\$endfor$ \noalign{\vskip 2mm} \hline
-  @ & @ \multicolumn{1}{r}{Total:}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
+        @ & @ \multicolumn{1}{r}{\textbf{Total}}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
 \end{spreadtab}
+}
 
-\rmfamily
-
-\vspace{7em}
-\normalsize
-\begin{flushright}
-LHCb Secretariat
-\end{flushright}
+\vspace{3em}
+\begin{minipage}[b]{0.5\textwidth}
+  % \small
+  $if(logo)$\includegraphics[width=3cm]{$logo$}\\$endif$
+  % \textsc{\textbf{\MakeLowercase{$author$}}}
+\end{minipage}
+\begin{minipage}[b]{0.5\textwidth}
+  \raggedleft
+  LHCb Secretariat
+\end{minipage}
 
 $separator$\pagebreak
 $endfor$
-
-
 
 \end{document}
