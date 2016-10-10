@@ -1,5 +1,5 @@
 ---
-receipt-base: "2016-ImpactKit"
+receipt-base: "2016-Starterkit"
 author: The LHCb Starterkit team
 logo: starterkit
 city: Geneva
@@ -9,7 +9,7 @@ to:
 - 12345 Musterstadt
 - Germany
 service:
-- description: Impact Kit Registration
+- description: Starterkit registration
   price: 20.00
   details: Includes organization costs, coffee breaks and social event
 

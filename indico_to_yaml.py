@@ -62,8 +62,8 @@ def build_yaml_def(registrants_list):
     for registrant in registrants_list:
         output_list.append({'id': registrant['ID'],
                             'name': registrant['Name'],
-                            'email': registrant['Email'],
-                            'institute': registrant['Institution']})
+                            'email': registrant['Email Address'],
+                            'institute': registrant['Affiliation']})
     return yaml.dump({'registrants': output_list}, default_flow_style=False)
 
 
