@@ -1,5 +1,5 @@
 ---
-receipt-base: "2016-Starterkit"
+receipt-base: "2017-Starterkit"
 author: The LHCb Starterkit team
 logo: starterkit
 city: Geneva
@@ -10,7 +10,7 @@ to:
 - Germany
 service:
 - description: Starterkit registration
-  price: 20.00
+  price: 25.00
   details: Includes organization costs, coffee breaks and social event
 
 # Receipt settings
