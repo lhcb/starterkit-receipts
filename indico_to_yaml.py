@@ -63,7 +63,7 @@ def build_yaml_def(registrants_list):
         output_list.append({'id': registrant['ID'],
                             'name': registrant['Name'],
                             'email': registrant['Email Address'],
-                            'institute': registrant['Affiliation']})
+                            'institute': registrant['Affiliation'] or '\-'})
     return yaml.dump({'registrants': output_list}, default_flow_style=False)
 
 
