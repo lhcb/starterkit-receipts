@@ -33,7 +33,8 @@ def load_csv_registration(file_name):
         raise OSError("Input CSV doesn't exist -> %s" % file_name)
     with open(file_name) as csv_file:
         registrants_csv = [row for row in csv.reader(csv_file, delimiter=',')]
-    col_definitions = registrants_csv.pop(0)
+    col_definitions = [c.replace('\ufeff', '') for c in registrants_csv.pop(0)]
+    print('col_definitions are', col_definitions)
     registrants = []
     for registrant_row in registrants_csv:
         registrants.append({col_definitions[index]: val
