@@ -5,7 +5,7 @@
 
 % LAYOUT
 %--------------------------------
-\usepackage{geometry} 
+\usepackage{geometry}
 \geometry{a4paper, left=45mm, right=45mm, top=15mm, bottom=50mm}
 $if(geometry)$\geometry{$geometry$}$endif$
 
@@ -52,7 +52,7 @@ $endif$
 
 % TYPOGRAPHY
 %--------------------------------
-\usepackage{fontspec} 
+\usepackage{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
 
@@ -157,8 +157,8 @@ $for(registrants)$
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   % \hdashline[1pt/1pt]
   @ \noalign{\vskip 2mm} \textbf{Num.} & @ \textbf{Description} & @ \textbf{Amount in $currency$} \\ \hline
-      $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
-        & @ $service.description$ 
+      $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos
+        & @ $service.description$
         $if(service.details)$\newline {\rmfamily\scriptsize $service.details$} $endif$
         & $service.price$\\$endfor$ \noalign{\vskip 2mm} \hline
         @ & @ \multicolumn{1}{r}{\textbf{Total}}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
@@ -173,7 +173,8 @@ $for(registrants)$
 \end{minipage}
 \begin{minipage}[b]{0.5\textwidth}
   \raggedleft
-  LHCb Secretariat
+  LHCb Secretariat \\
+  \today
 \end{minipage}
 
 $separator$\pagebreak
