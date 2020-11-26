@@ -10,7 +10,7 @@ Go to the *Management* area of the indico event, then *Registration* and access 
 Select all, click `Export/CSV` and save in the same folder as the receipt system.
 You can choose the name that you like, just remember to update the `Makefile`.
 
-Then, a simple `make` will generate `receipts.pdf`
+Then, a simple `make` will generate `receipts.pdf` and `attendance.pdf`. 
 
 
 Aknowledgments
