@@ -1,0 +1,175 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt, a4paper]{article}
+
+% LAYOUT
+%--------------------------------
+\usepackage{geometry}
+\geometry{a4paper, left=45mm, right=45mm, top=15mm, bottom=50mm}
+$if(geometry)$\geometry{$geometry$}$endif$
+
+% No page numbers
+\pagenumbering{gobble}
+
+\usepackage[dvipsnames]{xcolor}
+
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{%
+  \begin{minipage}{3.0cm}
+    \includegraphics[width=2.5cm]{cern}
+  \end{minipage}
+  \begin{minipage}{0.9\textwidth}
+    European Organization for Nuclear Research\\
+    \textit{Organisation européenne pour la recherche nucléaire}
+  \end{minipage}
+}
+\chead{}
+\rhead{}
+\lfoot{%
+  \href{https://home.cern}{\scriptsize\color{Gray}home.cern}
+}
+\rfoot{%
+  \scriptsize\color{Gray}\textbf{Switzerland}: CH-1211 Geneva CERN
+  \ensuremath{\vert} \textbf{France} F-01631 CERN CEDEX
+}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{3.5cm}
+\fancyhfoffset[l,r]{35mm}
+
+% Left align
+\usepackage[document]{ragged2e}
+
+$if(letterhead)$
+  % To include the letterhead
+  \usepackage{wallpaper}
+  \ULCornerWallPaper{1}{letterhead.pdf}
+$endif$
+
+% TYPOGRAPHY
+%--------------------------------
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+% converts LaTeX specials (quotes, dashes etc.) to Unicode
+\defaultfontfeatures{Mapping=tex-text, Numbers={OldStyle}}
+\setromanfont[Ligatures={Common}, Numbers={OldStyle}]{$seriffont$}
+\setsansfont{$sansfont$}
+
+% Set paragraph break
+\setlength{\parskip}{1em}
+
+% Custom ampersand
+\newcommand{\amper}{{\fontspec[Scale=.95]{$seriffont$}\selectfont\itshape\&}}
+
+$if(seriffont)$
+\setmainfont[SmallCapsFeatures={LetterSpace=5,Letters=SmallCaps}]{$seriffont$}
+$endif$
+$if(sansfont)$
+    \setsansfont{$sansfont$}
+$endif$
+
+% Command required by how Pandoc handles the list conversion
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% TABLE CUSTOMIZATION
+%--------------------------------
+\usepackage{spreadtab}
+\usepackage[compact]{titlesec} % For customizing title sections
+\titlespacing*{\section}{0pt}{3pt}{-7pt} % Remove margin bottom from the title
+\usepackage{arydshln} % For the dotted line on the table
+\renewcommand{\arraystretch}{1.5} % Apply vertical padding to table cells
+\usepackage{hhline} % For single-cell borders
+\usepackage{enumitem} % For customizing lists
+\setlist{nolistsep} % No whitespace around list items
+\setlist[itemize]{leftmargin=0.5cm} % Reduce list left indent
+\setlength{\tabcolsep}{9pt} % Larger gutter between columns
+
+
+% LANGUAGE
+%--------------------------------
+$if(lang)$
+\usepackage{polyglossia}
+\setmainlanguage{$lang$}
+$endif$
+
+% PDF SETUP
+%--------------------------------
+\usepackage[xetex, bookmarks, colorlinks, breaklinks]{hyperref}
+\hypersetup
+{
+  pdfauthor=$author$,
+  linkcolor=black,
+  citecolor=black,
+  filecolor=black,
+  urlcolor=black
+}
+
+\usepackage[strict]{changepage}
+
+
+\newcounter{pos}
+% DOCUMENT
+%--------------------------------
+\begin{document}
+\setlength{\parindent}{0pt}
+
+$for(registrants)$
+
+\begin{minipage}{0.5\textwidth}
+  LHCb secretariat\\
+  Office 2/1-051\\
+  CERN\\
+  +41~22\,767\,73\,55\\
+  \href{mailto:lhcb.secretariat@cern.ch}{lhcb.secretariat@cern.ch}\\
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.5\textwidth}
+  \raggedleft
+  $registrants.name$\\
+  $registrants.institute$\\
+  \href{mailto:$registrants.email$}{$registrants.email$}\\
+\end{minipage}
+
+
+% END HEADER
+
+% \vspace{2em}
+
+\begin{flushright}
+  {\small $city$, \today}
+\end{flushright}
+
+\vspace{8em}
+
+\section*{\centering\textcolor{blue}{CERTIFICATE OF ATTENDANCE}}
+
+\vspace{2em}
+
+This certificate is awarded to \textbf{$registrants.name$} for their attendance at the LHCb Starterkit 2020 workshop held virtually between 2nd-6th November, 2020.
+
+\vspace{10em}
+%\begin{minipage}[b]{0.3\textwidth}
+%  \raggedright \today
+%\end{minipage}
+\begin{minipage}[b]{0.5\textwidth}
+  % \small
+  $if(logo)$\includegraphics[width=3.5cm]{$logo$}\\$endif$
+  % \textsc{\textbf{\MakeLowercase{$author$}}}
+\end{minipage}
+\begin{minipage}[b]{0.5\textwidth}
+  \raggedleft
+  LHCb Secretariat \\
+  \today
+\end{minipage}
+
+$separator$\pagebreak
+$endfor$
+
+\end{document}
